@@ -12,8 +12,9 @@ export class AlertService {
   }
 
   handleErrors(resData: any) {
-    if (!resData.error || !resData.error.responseInfo) {
+    if (!resData?.error?.responseInfo) {
       this.showError(Alert.DEFAULT_ERROR);
+      return;
     }
     const responseInfo: ResponseInfo = resData.error.responseInfo;
     responseInfo.errors.forEach(error => {

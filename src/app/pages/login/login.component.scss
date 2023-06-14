@@ -1,0 +1,44 @@
+.login-fullscreen {
+  @apply h-screen bg-gray-100 text-gray-900 flex justify-center;
+}
+
+.login-container {
+  @apply max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1;
+}
+
+.login-content {
+  @apply lg:w-1/2 xl:w-5/12 p-6 sm:p-12;
+}
+
+.login-image {
+  @apply flex-1 bg-indigo-100 text-center hidden lg:flex;
+}
+
+.login-btn-indigo{
+  @apply w-full max-w-xs font-bold shadow-sm rounded-lg py-3  flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow;
+  &.btn-primary {
+    @apply hover:bg-indigo-700 tracking-wide bg-indigo-500 text-gray-100  focus:outline-none;
+  }
+  &.btn-light {
+    @apply bg-indigo-100 text-gray-800
+  }
+}
+
+.login-text-divine-container {
+  @apply my-12 border-b text-center;
+
+  .login-text-divine {
+    @apply leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2
+  }
+}
+
+.login-form-control-fullwidth {
+  @apply mx-auto max-w-xs;
+}
+
+.login-form-control {
+  &.login-input-error {
+    @apply input-error;
+  }
+  @apply input input-bordered w-full max-w-xs px-8 py-7 font-medium bg-gray-100;
+}
