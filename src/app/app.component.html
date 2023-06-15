@@ -1,3 +1,5 @@
-<app-sidebar>
+<router-outlet *ngIf="!isAuthenticated"></router-outlet>
+
+<app-sidebar *ngIf="isAuthenticated">
   <router-outlet></router-outlet>
 </app-sidebar>

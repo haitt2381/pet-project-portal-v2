@@ -1,11 +1,7 @@
 <div class="dark:bg-zinc-800 [&>*]:leading-[1.6]">
   <!-- Sidenav -->
   <nav
-    id="full-screen-example" class="navbar-container"
-    data-te-sidenav-init data-te-sidenav-mode-breakpoint-over="0"
-    data-te-sidenav-mode-breakpoint-side="sm" data-te-sidenav-hidden="false"
-    data-te-sidenav-color="dark" data-te-sidenav-content="#content"
-    data-te-sidenav-scroll-container="#scrollContainer">
+    id="full-screen-example" class="navbar-container" [ngClass]="{'opened': isOpenedSidebar}">
     <div class="pt-6">
       <div id="header-content" class="flex flex-col justify-center items-center">
         <img src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(23).webp" alt="Avatar" class="navbar-avatar"/>
@@ -79,6 +75,8 @@
     <app-header></app-header>
     <div class="py-12 text-center">
       <ng-content></ng-content>
+    </div>
+    <div *ngIf="isOpenedSidebar" class="fixed top-0 bottom-0 left-0 right-0 bg-blue-600/30 backdrop-brightness-75" (click)="this.sidebarService.toggleSidebar()">
     </div>
   </div>
   <!-- Content -->
