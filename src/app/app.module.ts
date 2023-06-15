@@ -10,12 +10,14 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {LoginComponent} from "./pages/login/login.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
+import { SidebarComponent } from './pages/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LoginComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
