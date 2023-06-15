@@ -1,0 +1,23 @@
+@media screen and (min-width: 1024px) {
+  .card-table-responsive {
+    max-height: calc(100vh - (6rem + 4.2rem));
+  }
+  .table {
+    min-height: calc(100vh - (6rem + 4.2rem + 4.2rem));
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  //.card-table-responsive {
+  //  max-height: calc(100vh - 4.2rem);
+  //}
+  .table {
+    min-height: calc(100vh - 8.4rem);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .card {
+    @apply rounded-none;
+  }
+}

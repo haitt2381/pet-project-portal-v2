@@ -11,6 +11,7 @@ import {LoginComponent} from "./pages/login/login.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import { SidebarComponent } from './pages/sidebar/sidebar.component';
+import { UserComponent } from './pages/user/user.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SidebarComponent } from './pages/sidebar/sidebar.component';
     HeaderComponent,
     LoginComponent,
     SidebarComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
