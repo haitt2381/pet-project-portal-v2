@@ -7,6 +7,20 @@ body {
   @apply w-5 h-5;
 }
 
+.btn-icon-success {
+  &:hover {
+    cursor: pointer;
+  }
+  @apply text-green-500 hover:text-green-600
+}
+
+.btn-icon-accent {
+  &:hover {
+    cursor: pointer;
+  }
+  @apply text-red-500 hover:text-red-600
+}
+
 .app-logo {
   @apply font-extrabold text-indigo-500 text-center
 }

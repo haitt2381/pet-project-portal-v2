@@ -1,53 +1,87 @@
 <div class="card w-full bg-base-100 shadow-xl static">
   <div class="card-body card-table-responsive">
     <div class="overflow-x-auto">
-      <table class="table static" aria-label="user management" >
+      <table class="table static" aria-label="user management">
         <thead class="bg-indigo-50 rounded-t-lg">
         <tr>
           <th scope="col" class="rounded-tl-lg">
             <label>
-              <input type="checkbox" class="checkbox" />
+              <input type="checkbox" class="checkbox"/>
             </label>
           </th>
-          <th scope="col" class="text-sm uppercase font-semibold text-gray-600">Name</th>
-          <th scope="col" class="text-sm uppercase font-semibold text-gray-600">Job</th>
-          <th scope="col" class="text-sm uppercase font-semibold text-gray-600">Favorite Color</th>
+          <th appSort="name" scope="col" class="text-sm uppercase font-semibold text-gray-600">Name</th>
+          <th appSort="email" scope="col" class="text-sm uppercase font-semibold text-gray-600">Contact</th>
+          <th scope="col" class="text-sm uppercase font-semibold text-gray-600">Role</th>
+          <th scope="col" class="text-sm uppercase font-semibold text-gray-600">Status</th>
+          <th scope="col" class="text-sm uppercase font-semibold text-gray-600">Modified Date</th>
           <th scope="col" class="text-sm uppercase font-semibold text-gray-600 rounded-tr-lg"></th>
         </tr>
         </thead>
         <tbody>
-        <tr>
+        <tr *ngFor="let user of users" class="hover">
           <th scope="row">
             <label>
-              <input type="checkbox" class="checkbox" />
+              <input type="checkbox" class="checkbox"/>
             </label>
           </th>
           <td>
             <div class="flex items-center space-x-3">
               <div class="avatar">
                 <div class="mask mask-squircle w-12 h-12">
-                  <img src="https://mcdn.wallpapersafari.com/medium/20/66/ZQH8UV.jpg" alt="Avatar Tailwind CSS Component" />
+                  <img src="https://mcdn.wallpapersafari.com/medium/20/66/ZQH8UV.jpg"
+                       alt="Avatar Tailwind CSS Component"/>
                 </div>
               </div>
               <div>
-                <div class="font-bold">Hart Hagerty</div>
-                <div class="text-sm opacity-50">United States</div>
+                <div class="font-bold">{{user.username}}</div>
+                <div class="text-sm opacity-50">{{user.firstName.concat(" ", user.lastName)}}</div>
               </div>
             </div>
           </td>
           <td>
-            Zemlak, Daniel and Leannon
-            <br/>
-            <span class="badge badge-ghost badge-sm">Desktop Support Technician</span>
+            {{user.email}}
+            <div class="text-sm opacity-50">{{user.phoneNumber}}</div>
           </td>
-          <td>Purple</td>
+          <td>
+            <span class="badge badge-warning"
+                  *ngIf="user.role.toLowerCase().includes(ADMIN.toLowerCase())"
+            >{{ADMIN}}
+          </span>
+            <span class="badge badge-success"
+                  *ngIf="user.role.toLowerCase().includes(MODERATOR.toLowerCase())"
+            >{{MODERATOR}}
+          </span>
+            <span class="badge badge-info"
+                  *ngIf="user.role.toLowerCase().includes(MEMBER.toLowerCase())"
+            >{{MEMBER}}
+          </span>
+          </td>
+          <td>
+            <div class="tooltip" [attr.data-tip]="toggleActive.checked ? 'Deactivate User' : 'Active User'">
+              <input type="checkbox" class="toggle toggle-md toggle-primary" #toggleActive
+                     [checked]="user.isActive"
+                     [disabled]="isRecycleMode"
+                     (change)="onChangeUserStatus(user.id, user.isActive)"
+              />
+            </div>
+          </td>
+          <td>
+            {{user.modifiedAt | date:'mediumDate' }}
+          </td>
           <th scope="row">
-            <button class="btn btn-ghost btn-xs">details</button>
+            <div class="hidden-element">
+              <div class="tooltip" data-tip="Edit user">
+                <i class="fa-solid fa-pen-to-square fa-lg btn-icon-success action-btn"></i>
+              </div> &boxv;
+              <div class="tooltip" data-tip="Delete user">
+                <i class="fa-solid fa-trash-can-arrow-up fa-lg btn-icon-accent action-btn"></i>
+              </div>
+            </div>
           </th>
         </tr>
         </tbody>
         <tfoot class="bg-indigo-50">
-        <tr>
+        <tr style="display: none">
           <th scope="col" class="rounded-bl-lg"></th>
           <th scope="col" class="text-sm uppercase font-semibold text-gray-600">Name</th>
           <th scope="col" class="text-sm uppercase font-semibold text-gray-600">Job</th>
@@ -57,14 +91,15 @@
         </tfoot>
       </table>
     </div>
-<!--    <div class="card-actions justify-end">-->
-<!--      <div class="join">-->
-<!--        <button class="join-item btn">1</button>-->
-<!--        <button class="join-item btn">2</button>-->
-<!--        <button class="join-item btn btn-disabled">...</button>-->
-<!--        <button class="join-item btn">99</button>-->
-<!--        <button class="join-item btn">100</button>-->
-<!--      </div>-->
-<!--    </div>-->
+    <div class="card-actions justify-between">
+      <div class="tooltip" [attr.data-tip]="isRecycleMode ? 'User management' : 'Recycle user'">
+        <button class="btn btn-ghost btn-circle btn-outline" (click)="onToggleRecycleMode()">
+          <i *ngIf="isRecycleMode" class="fa-solid fa-users-line "></i>
+          <i *ngIf="!isRecycleMode" class="fa-solid fa-recycle "></i>
+        </button>
+      </div>
+
+      <app-pagination [responseInfo]="responseInfo" (event)="loadUsers()"></app-pagination>
+    </div>
   </div>
 </div>

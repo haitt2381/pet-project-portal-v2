@@ -1,18 +1,30 @@
-@media screen and (min-width: 1024px) {
-  .card-table-responsive {
-    max-height: calc(100vh - (6rem + 4.2rem));
+.table {
+  tr {
+    &:hover{
+      .hidden-element {
+        visibility: visible;
+        opacity: 1;
+        transition-delay: 0s;
+      }
+    }
   }
+}
+
+.hidden-element {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 0.3s, opacity 0.3s linear;
+}
+
+@media screen and (min-width: 1024px) {
   .table {
-    min-height: calc(100vh - (6rem + 4.2rem + 4.2rem));
+    min-height: calc(100vh - (6rem + 4.2rem + 4.2rem + 4.2rem));
   }
 }
 
 @media screen and (max-width: 1024px) {
-  //.card-table-responsive {
-  //  max-height: calc(100vh - 4.2rem);
-  //}
   .table {
-    min-height: calc(100vh - 8.4rem);
+    min-height: calc(100vh - (8.4rem + 3.4rem));
   }
 }
 

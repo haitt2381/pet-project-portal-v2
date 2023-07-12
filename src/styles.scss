@@ -8,6 +8,7 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 @import '@fortawesome/fontawesome-free/scss/regular';
 
 @import "src/assets/scss/help";
+@import "src/assets/scss/daisy-override";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

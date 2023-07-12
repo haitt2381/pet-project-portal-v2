@@ -12,7 +12,7 @@ import {UserLoginLocalStorage} from "../share/model/auth/user-login-local-storag
 @Injectable({providedIn: 'root'})
 export class AuthService {
   private _authUrl = `${AppConstant.APP_SERVER_API_URL}/auth`;
-  userLogged = new BehaviorSubject<UserLogin | null>(null);
+  userLogged = new BehaviorSubject<UserLogin>(null);
 
   private _refreshTokenExpirationTimer: any;
   private _tokenExpirationTimer: any;
@@ -97,7 +97,7 @@ export class AuthService {
   }
 
   logout() {
-    this.userLogged.next(null);
+    this.userLogged.next(null!);
     this._router.navigate(['/auth']).then(() => {
       localStorage.removeItem('userData');
       this.clearLogoutTime();

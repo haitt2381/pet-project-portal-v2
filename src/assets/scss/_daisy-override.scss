@@ -1,0 +1,16 @@
+.badge {
+  @apply text-[0.75em] font-bold;
+
+  &.badge-success {
+    @apply text-green-700 bg-green-100;
+  }
+
+  &.badge-info {
+    @apply text-cyan-700 bg-cyan-100;
+  }
+
+  &.badge-warning {
+    @apply text-amber-700 bg-amber-100;
+  }
+}
+
