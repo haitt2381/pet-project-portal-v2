@@ -17,6 +17,7 @@ import {EmptyStateComponent} from "./share/UI/empty-state/empty-state.component"
 import {PopConfirmComponent} from "./share/UI/pop-comfirm/pop-confirm/pop-confirm.component";
 import {PaginationComponent} from "./share/UI/pagination/PaginationComponent.component";
 import { SortDirective } from './share/directives/sort.directive';
+import { CheckboxFilterComponent } from './share/UI/custom-filter/checkbox-filter/checkbox-filter.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SortDirective } from './share/directives/sort.directive';
     EmptyStateComponent,
     PopConfirmComponent,
     PaginationComponent,
-    SortDirective
+    SortDirective,
+    CheckboxFilterComponent
   ],
   imports: [
     BrowserModule,

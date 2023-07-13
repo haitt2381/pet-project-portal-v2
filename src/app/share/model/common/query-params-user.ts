@@ -1,11 +1,7 @@
-export interface QueryParamsUser {
-  pageSize: number
-  pageIndex: number
-  sortActive: string
-  sortDirection: any;
+import {QueryParams} from "./query-params.model";
+
+export class QueryParamsUser extends QueryParams{
   role: string[]
   active: boolean
-  fromDate: Date;
-  toDate: Date;
   keyword: string;
 }

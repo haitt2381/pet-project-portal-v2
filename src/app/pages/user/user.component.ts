@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {Role} from "../../share/constant/role.constant";
 import {dataSourceActiveFilter, dataSourceRoleFilter} from "../../share/constant/data-source-filter.constant";
 import {User} from "../../share/model/user/user.model";
@@ -34,7 +34,7 @@ import {SortDirective} from "../../share/directives/sort.directive";
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent {
+export class UserComponent implements OnInit{
   protected readonly ADMIN = Role.ADMIN;
   protected readonly MODERATOR = Role.MODERATOR;
   protected readonly MEMBER = Role.MEMBER;
@@ -47,9 +47,8 @@ export class UserComponent {
   dataSource: MatTableDataSource<User>;
   isRecycleMode: boolean = false;
   isRemoveAllFilterDisable = false
-  queryStorage: QueryParamsUser;
   beforePayloadUsers: string;
-  queryParams: QueryParams;
+  queryParams: QueryParamsUser;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -57,7 +56,7 @@ export class UserComponent {
 
   constructor(
     private _router: Router,
-    private _route: ActivatedRoute,
+    private route: ActivatedRoute,
     private _userService: UserService,
     private _alertService: AlertService,
     private _headerService: HeaderTitleService,
@@ -68,36 +67,37 @@ export class UserComponent {
   }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource<User>(this.users);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    if (Object.keys(this._query.getItem).length === 0) {
-      this._query.initData();
-    }
-    this._query.item.subscribe(() => {
-      this.queryStorage = this._query.getItem;
-      this.isRemoveAllFilterDisable = Object.keys(this.queryStorage).length === 4
-        && ((this.queryStorage.pageSize === APP_DEFAULT_PAGE_SIZE && this.queryStorage.pageIndex === APP_DEFAULT_PAGE_INDEX)
-          && (this.queryStorage.sortActive === APP_DEFAULT_SORT_ACTIVE && this.queryStorage.sortDirection === APP_DEFAULT_SORT_DIRECTION))
-      this.loadUsers();
-    })
+    // this.dataSource = new MatTableDataSource<User>(this.users);
+    // this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
+    // if (Object.keys(this._query.getItem).length === 0) {
+    //   this._query.initData();
+    // }
+    // this._query.item.subscribe(() => {
+    //   this.queryStorage = this._query.getItem;
+    //   this.isRemoveAllFilterDisable = Object.keys(this.queryStorage).length === 4
+    //     && ((this.queryStorage.pageSize === APP_DEFAULT_PAGE_SIZE && this.queryStorage.pageIndex === APP_DEFAULT_PAGE_INDEX)
+    //       && (this.queryStorage.sortActive === APP_DEFAULT_SORT_ACTIVE && this.queryStorage.sortDirection === APP_DEFAULT_SORT_DIRECTION))
+    //   this.loadUsers();
+    // })
 
-    this._route.queryParams.subscribe((params: QueryParams) => {
+    this.route.queryParams.subscribe((params: QueryParamsUser) => {
       this.queryParams = params;
+      this.loadUsers();
     });
   }
 
   private buildGetUserRequest() {
-    let sortInfo = new SortInfo(this.queryStorage.sortDirection, this.queryStorage.sortActive);
+    let sortInfo = new SortInfo(this.queryParams.sort_direction, this.queryParams.sort_active);
     let requestInfo = new RequestInfo(this.queryParams?.page_index, this.queryParams?.page_size, sortInfo);
     let getUsersRequest = new GetUsersRequest(requestInfo);
-    getUsersRequest.setRole = this.queryStorage?.role;
-    getUsersRequest.isActive = this.queryStorage?.active;
+    getUsersRequest.setRole = this.queryParams?.role;
+    getUsersRequest.isActive = this.queryParams?.active;
     getUsersRequest.isExcludeCurrentUserLogged = true;
     getUsersRequest.isDeleted = this.isRecycleMode;
-    getUsersRequest.fromDate = this.queryStorage?.fromDate;
-    getUsersRequest.toDate = this.queryStorage?.toDate;
-    getUsersRequest.keyword = this.queryStorage?.keyword;
+    getUsersRequest.fromDate = this.queryParams?.fromModifiedDate;
+    getUsersRequest.toDate = this.queryParams?.toModifiedDate;
+    getUsersRequest.keyword = this.queryParams?.keyword;
     return getUsersRequest;
   }
 

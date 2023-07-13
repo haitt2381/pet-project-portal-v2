@@ -1,0 +1,17 @@
+<div class="dropdown">
+  <label tabindex="0" class="m-1 cursor-pointer">
+    <i class="fa-solid fa-filter fa-xs filter-icon" [ngClass]="{'text-primary': this.queryParams[this.paramName] && this.queryParams[this.paramName]?.length !== 0}"></i>
+  </label>
+  <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-fit">
+    <li *ngFor="let data of dataSource, let i = index">
+      <label class="label cursor-pointer flex justify-start">
+        <input type="checkbox" class="checkbox checkbox-primary checkbox-sm"
+               [value]="data.value"
+               [checked]="this.queryParams[this.paramName] &&  this.queryParams[this.paramName]?.includes(data.value)"
+               (change)="onCheckboxChange($event)"
+        />
+        <span class="label-text" [innerHTML]="this.sanitizer.bypassSecurityTrustHtml(data.text)"></span>
+      </label>
+    </li>
+  </ul>
+</div>

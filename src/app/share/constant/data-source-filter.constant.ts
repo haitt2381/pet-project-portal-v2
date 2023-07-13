@@ -3,15 +3,15 @@ import {Role} from "./role.constant";
 
 export const dataSourceRoleFilter: DataSourceFilter[] = [
   {
-    text: `<span class="badge badge-warning rounded-pill d-inline">${Role.ADMIN}</span>`,
+    text: `<span class="badge badge-warning">${Role.ADMIN}</span>`,
     value: Role.ADMIN.toUpperCase()
   },
   {
-    text: `<span class="badge badge-success rounded-pill d-inline">${Role.MODERATOR}</span>`,
+    text: `<span class="badge badge-success">${Role.MODERATOR}</span>`,
     value: Role.MODERATOR.toUpperCase()
   },
   {
-    text: `<span class="badge badge-primary rounded-pill d-inline">${Role.MEMBER}</span>`,
+    text: `<span class="badge badge-info">${Role.MEMBER}</span>`,
     value: Role.MEMBER.toUpperCase()
   }
 ];

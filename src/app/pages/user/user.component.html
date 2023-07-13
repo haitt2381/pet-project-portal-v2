@@ -9,11 +9,15 @@
               <input type="checkbox" class="checkbox"/>
             </label>
           </th>
-          <th appSort="name" scope="col" class="text-sm uppercase font-semibold text-gray-600">Name</th>
+          <th appSort="username" scope="col" class="text-sm uppercase font-semibold text-gray-600">Name</th>
           <th appSort="email" scope="col" class="text-sm uppercase font-semibold text-gray-600">Contact</th>
-          <th scope="col" class="text-sm uppercase font-semibold text-gray-600">Role</th>
-          <th scope="col" class="text-sm uppercase font-semibold text-gray-600">Status</th>
-          <th scope="col" class="text-sm uppercase font-semibold text-gray-600">Modified Date</th>
+          <th scope="col" class="text-sm uppercase font-semibold text-gray-600">Role
+            <app-checkbox-filter [dataSource]="dataSourceRoleFilter" paramName='role'></app-checkbox-filter>
+          </th>
+          <th scope="col" class="text-sm uppercase font-semibold text-gray-600">Status
+
+          </th>
+          <th appSort="modifiedAt" [isDefaultSort]="true" scope="col" class="text-sm uppercase font-semibold text-gray-600">Modified Date</th>
           <th scope="col" class="text-sm uppercase font-semibold text-gray-600 rounded-tr-lg"></th>
         </tr>
         </thead>

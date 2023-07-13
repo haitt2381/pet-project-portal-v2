@@ -8,6 +8,7 @@ import {QueryParams} from "../model/common/query-params.model";
 export class SortDirective implements OnInit {
 
   @Input('appSort') sortActive: string;
+  @Input('isDefaultSort') isDefaultSort: boolean = false;
   private sortDirection: string;
   private originalHeader: string;
 
@@ -18,6 +19,12 @@ export class SortDirective implements OnInit {
     this.originalHeader = this.elementRef.nativeElement.innerHTML;
     this.elementRef.nativeElement.classList.add("cursor-pointer", "select-none");
     this.elementRef.nativeElement.setAttribute('name', 'sortElement');
+
+    if(this.isDefaultSort && !this.route.snapshot.queryParams["sort_active"]) {
+      this.sortDirection = 'asc';
+      this.sort();
+    }
+
     this.route.queryParams.subscribe((params: QueryParams) => {
       if (params.sort_active === this.sortActive) {
         this.updateSortIcon();
