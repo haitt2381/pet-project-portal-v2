@@ -18,6 +18,7 @@ import {PopConfirmComponent} from "./share/UI/pop-comfirm/pop-confirm/pop-confir
 import {PaginationComponent} from "./share/UI/pagination/PaginationComponent.component";
 import { SortDirective } from './share/directives/sort.directive';
 import { CheckboxFilterComponent } from './share/UI/custom-filter/checkbox-filter/checkbox-filter.component';
+import {UserEditComponent} from "./pages/user/user-edit/user-edit.component";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CheckboxFilterComponent } from './share/UI/custom-filter/checkbox-filte
     PopConfirmComponent,
     PaginationComponent,
     SortDirective,
-    CheckboxFilterComponent
+    CheckboxFilterComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,

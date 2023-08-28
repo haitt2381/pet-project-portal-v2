@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {LoginComponent} from "./pages/login/login.component";
 import {UserComponent} from "./pages/user/user.component";
 import {AuthGuard} from "./share/config/auth.guard";
+import {UserEditComponent} from "./pages/user/user-edit/user-edit.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'user', pathMatch: 'full'},
@@ -10,7 +11,7 @@ const routes: Routes = [
   {
     path: 'user', canActivate: [AuthGuard], children: [
       {path: '', component: UserComponent},
-      {path: 'new', component: UserComponent},
+      {path: 'new', component: UserEditComponent},
       {path: 'edit/:id', component: UserComponent}
     ]
   },

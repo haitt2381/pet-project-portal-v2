@@ -12,3 +12,7 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.card {
+  @apply static
+}

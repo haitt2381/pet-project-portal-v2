@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DataSourceFilter} from "../../../model/common/data-source-filter.model";
 import {DomSanitizer} from "@angular/platform-browser";
-import {QueryStorageService} from "../../../services/query-storage.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
